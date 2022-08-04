@@ -146,6 +146,14 @@ resource "aws_security_group" "demo_sg" {
   description = "demo security group for web traffic"
   vpc_id      = aws_vpc.demo_vpc.id
 
+#for dockerized application api calls
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   #http
   ingress {
     from_port   = 80
